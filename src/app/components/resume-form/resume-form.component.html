@@ -1,0 +1,35 @@
+<div class="resume-form">
+  <h2>Create Your Resume</h2>
+  <form (ngSubmit)="submitForm()" #resumeForm="ngForm">
+    <label class="form-label mt-3" for="name">Name:</label>
+    <input
+      class="form-control"
+      type="text"
+      id="name"
+      name="name"
+      [(ngModel)]="resumeData.name"
+      required
+    />
+
+    <label class="form-label mt-3" for="experience">Experience:</label>
+    <textarea
+      class="form-control"
+      id="experience"
+      name="experience"
+      [(ngModel)]="resumeData.experience"
+      required
+    ></textarea>
+
+    <label class="form-label mt-3" for="skills">Skills:</label>
+    <input
+      class="form-control"
+      type="text"
+      id="skills"
+      name="skills"
+      [(ngModel)]="resumeData.skills"
+      required
+    />
+
+    <button class="btn btn-primary mt-3" type="submit">Generate Preview</button>
+  </form>
+</div>

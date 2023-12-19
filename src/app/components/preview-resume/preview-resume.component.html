@@ -1,0 +1,11 @@
+<div class="preview-resume">
+  <h2>Preview Your Resume</h2>
+  <div *ngIf="resumeData">
+    <p><strong>Name:</strong> {{ resumeData.name }}</p>
+    <p><strong>Experience:</strong> {{ resumeData.experience }}</p>
+    <p><strong>Skills:</strong> {{ resumeData.skills }}</p>
+  </div>
+  <div *ngIf="!resumeData">
+    <p>No resume data available. Fill out the form to generate a preview.</p>
+  </div>
+</div>
