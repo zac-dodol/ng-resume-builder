@@ -1,10 +1,23 @@
 <div class="preview-resume">
   <h2>Preview Your Resume</h2>
-  <div *ngIf="resumeData">
-    <p><strong>Name:</strong> {{ resumeData.name }}</p>
-    <p><strong>Experience:</strong> {{ resumeData.experience }}</p>
-    <p><strong>Skills:</strong> {{ resumeData.skills }}</p>
+
+  <!-- Template selection dropdown -->
+  <label for="template">Select Template:</label>
+  <select id="template" name="template" [(ngModel)]="selectedTemplate">
+    <option value="template1">Template 1</option>
+    <option value="template2">Template 2</option>
+    <!-- Add more options as needed -->
+  </select>
+
+  <!-- Display selected template -->
+  <div *ngIf="selectedTemplate === 'template1'">
+    <app-template1 [resumeData]="resumeData"></app-template1>
   </div>
+
+  <div *ngIf="selectedTemplate === 'template2'">
+    <app-template2 [resumeData]="resumeData"></app-template2>
+  </div>
+
   <div *ngIf="!resumeData">
     <p>No resume data available. Fill out the form to generate a preview.</p>
   </div>

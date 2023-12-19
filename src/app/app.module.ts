@@ -9,9 +9,11 @@ import { ResumeFormComponent } from './components/resume-form/resume-form.compon
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { Template1Component } from './components/template1/template1.component';
+import { Template2Component } from './components/template2/template2.component';
 
 @NgModule({
-  declarations: [AppComponent, ResumeFormComponent, PreviewResumeComponent],
+  declarations: [AppComponent, ResumeFormComponent, PreviewResumeComponent, Template1Component, Template2Component],
   imports: [
     BrowserModule,
     AppRoutingModule,
