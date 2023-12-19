@@ -1,108 +1,164 @@
-<div class="resume-form">
-  <h2>Create Your Resume</h2>
-  <form (ngSubmit)="submitForm()" #resumeForm="ngForm">
-    <label class="form-label mt-3" for="name">Name:</label>
-    <input
-      class="form-control"
-      type="text"
-      id="name"
-      name="name"
-      [(ngModel)]="resumeData.name"
-      required
-    />
+<form [formGroup]="resumeForm" (ngSubmit)="submitForm()">
+  <!-- Personal Information -->
+  <h2>Personal Information</h2>
 
-    <label class="form-label mt-3" for="experience">Experience:</label>
-    <textarea
-      class="form-control"
-      id="experience"
-      name="experience"
-      [(ngModel)]="resumeData.experience"
-      required
-    ></textarea>
+  <div class="row">
+    <div class="col">
+      <label class="form-label mt-3" for="firstName">First Name:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="firstName"
+        name="firstName"
+        formControlName="firstName"
+        required
+      />
+    </div>
 
-    <label class="form-label mt-3" for="skills">Skills:</label>
-    <input
-      class="form-control"
-      type="text"
-      id="skills"
-      name="skills"
-      [(ngModel)]="resumeData.skills"
-      required
-    />
+    <div class="col">
+      <label class="form-label mt-3" for="lastName">Last Name:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="lastName"
+        name="lastName"
+        formControlName="lastName"
+        required
+      />
+    </div>
+  </div>
 
-    <button class="btn btn-primary mt-3" type="submit">Generate Preview</button>
-  </form>
-</div>
+  <div class="row">
+    <div class="col">
+      <label class="form-label mt-3" for="email">Email:</label>
+      <input
+        class="form-control"
+        type="email"
+        id="email"
+        name="email"
+        formControlName="email"
+        required
+      />
+    </div>
 
-<div class="resume-form">
-  <h2>Create Your Resume</h2>
-  <form (ngSubmit)="submitForm()" #resumeForm="ngForm">
-    <!-- Personal Information -->
-    <label for="firstName">First Name:</label>
-    <input
-      type="text"
-      id="firstName"
-      name="firstName"
-      [(ngModel)]="resumeData.firstName"
-      required
-    />
+    <div class="col">
+      <label class="form-label mt-3" for="phoneNumber">Phone Number:</label>
+      <input
+        class="form-control"
+        type="tel"
+        id="phoneNumber"
+        name="phoneNumber"
+        formControlName="phoneNumber"
+        required
+      />
+    </div>
+  </div>
 
-    <label for="lastName">Last Name:</label>
-    <input
-      type="text"
-      id="lastName"
-      name="lastName"
-      [(ngModel)]="resumeData.lastName"
-      required
-    />
+  <label class="form-label mt-3" for="address">Address:</label>
+  <input
+    class="form-control"
+    type="text"
+    id="address"
+    name="address"
+    formControlName="address"
+    required
+  />
 
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      id="email"
-      name="email"
-      [(ngModel)]="resumeData.email"
-      required
-    />
+  <!-- Repeat similar controls for other personal information fields -->
 
-    <label for="phoneNumber">Phone Number:</label>
-    <input
-      type="tel"
-      id="phoneNumber"
-      name="phoneNumber"
-      [(ngModel)]="resumeData.phoneNumber"
-      required
-    />
-
-    <label for="address">Address:</label>
-    <input
-      type="text"
-      id="address"
-      name="address"
-      [(ngModel)]="resumeData.address"
-      required
-    />
-
-    <!-- Experiences -->
+  <!-- Experience Section -->
+  <h2>Experiences</h2>
+  <div formArrayName="experiences">
     <div
-      *ngFor="let experience of resumeData.experiences; let i = index"
-      class="experience"
+      *ngFor="let experience of experiences.controls; let i = index"
+      [formGroupName]="i"
     >
       <h3>Experience {{ i + 1 }}</h3>
-      <label for="title">Title:</label>
+      <label class="form-label" for="title">Title:</label>
       <input
+        class="form-control"
         type="text"
         id="title"
-        name="title"
-        [(ngModel)]="experience.title"
+        formControlName="title"
         required
       />
 
-      <!-- Add other fields for experience (company, location, startDate, endDate, description) -->
+      <div class="row">
+        <div class="col">
+          <label class="form-label mt-3" for="title">Company:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="title"
+            name="title"
+            formControlName="company"
+            required
+          />
+        </div>
+
+        <div class="col">
+          <label class="form-label mt-3" for="title">Location:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="title"
+            name="title"
+            formControlName="location"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="form-label mt-3" for="title">startDate:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="title"
+            name="title"
+            formControlName="startDate"
+            required
+          />
+        </div>
+
+        <div class="col">
+          <label class="form-label mt-3" for="title">endDate:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="title"
+            name="title"
+            formControlName="endDate"
+            required
+          />
+        </div>
+      </div>
+
+      <label class="form-label mt-3" for="title">Description:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="title"
+        name="title"
+        formControlName="description"
+        required
+      />
+
+      <button
+        class="btn btn-secondary mt-3"
+        type="button"
+        (click)="removeExperience(i)"
+      >
+        Remove Experience
+      </button>
     </div>
+  </div>
+  <button class="btn btn-secondary" type="button" (click)="addExperience()">
+    Add Experience
+  </button>
 
-    <!-- Add sections for education, certifications, skills, etc. -->
+  <!-- Repeat similar sections for Education, Certifications, References, Skills -->
 
-    <button type="submit">Generate Preview</button>
-  </form>
-</div>
+  <button class="btn btn-primary my-3 ms-3" type="submit">Submit</button>
+</form>

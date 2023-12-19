@@ -1,6 +1,12 @@
 <div class="template1">
   <h2>Template 1</h2>
-  <p>Name: {{ resumeData.name }}</p>
-  <p>Experience: {{ resumeData.experience }}</p>
-  <p>Skills: {{ resumeData.skills }}</p>
+  <p>Name: {{ resumeData.firstName }}</p>
+
+  <p>phone no: {{ resumeData.phoneNumber }}</p>
+
+  <p>email: {{ resumeData.email }}</p>
+
+  <p *ngFor="let experience of resumeData.experiences; let i = index">
+    Experience {{ i + 1 }}: {{ experience.title }}
+  </p>
 </div>

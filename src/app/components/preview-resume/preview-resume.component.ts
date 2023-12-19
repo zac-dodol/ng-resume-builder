@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
 @Component({
@@ -6,15 +6,19 @@ import { ActivatedRoute } from '@angular/router';
   templateUrl: './preview-resume.component.html',
   styleUrls: ['./preview-resume.component.scss'],
 })
-export class PreviewResumeComponent {
+export class PreviewResumeComponent implements OnInit {
   resumeData: any;
   selectedTemplate: string = 'template1'; // Default template
 
   constructor(private route: ActivatedRoute) {
-    // Retrieve data and selected template passed from the form component
-    this.route.paramMap.subscribe((params) => {
-      this.resumeData = JSON.parse(params.get('data') || '{}');
-      this.selectedTemplate = params.get('template') || 'template1';
+    // Retrieve data and selected template from queryParams
+    this.route.queryParams.subscribe((params) => {
+      this.resumeData = JSON.parse(params['data'] || '{}');
+      this.selectedTemplate = params['template'] || 'template1';
     });
+  }
+
+  ngOnInit(): void {
+    console.log(this.resumeData);
   }
 }
