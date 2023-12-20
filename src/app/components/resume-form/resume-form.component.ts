@@ -24,12 +24,12 @@ export class ResumeFormComponent implements OnInit {
       email: ['', [Validators.required, Validators.email]],
       phoneNumber: ['', Validators.pattern('^[0-9]{3}-[0-9]{3}-[0-9]{4}$')],
       address: [''],
-      experiences: this.fb.array([]),
-      education: this.fb.array([]),
-      certifications: this.fb.array([]),
       description: [''],
-      references: this.fb.array([]),
       linkedin: [''],
+      experiences: this.fb.array([]),
+      educations: this.fb.array([]),
+      certifications: this.fb.array([]),
+      references: this.fb.array([]),
       skills: this.fb.array([]),
     });
   }
@@ -38,23 +38,8 @@ export class ResumeFormComponent implements OnInit {
     return this.resumeForm.get('experiences') as FormArray;
   }
 
-  get education() {
-    return this.resumeForm.get('education') as FormArray;
-  }
-
-  get certifications() {
-    return this.resumeForm.get('certifications') as FormArray;
-  }
-
-  get references() {
-    return this.resumeForm.get('references') as FormArray;
-  }
-
-  get skills() {
-    return this.resumeForm.get('skills') as FormArray;
-  }
-
   addExperience() {
+    console.log('exp');
     this.experiences.push(
       this.fb.group({
         title: ['', Validators.required],
@@ -71,7 +56,82 @@ export class ResumeFormComponent implements OnInit {
     this.experiences.removeAt(index);
   }
 
-  // Add similar functions for education, certifications, references, and skills
+  get educations() {
+    return this.resumeForm.get('educations') as FormArray;
+  }
+
+  addEducation() {
+    console.log('edu');
+    this.educations.push(
+      this.fb.group({
+        degree: ['', Validators.required],
+        major: [''],
+        university: [''],
+        location: [''],
+        startDate: [''],
+        endDate: [''],
+        description: [''],
+      })
+    );
+  }
+
+  removeEducation(index: number) {
+    this.educations.removeAt(index);
+  }
+
+  get certifications() {
+    return this.resumeForm.get('certifications') as FormArray;
+  }
+
+  addCertification() {
+    console.log('cert');
+    this.certifications.push(
+      this.fb.group({
+        name: ['', Validators.required],
+        date: [''],
+      })
+    );
+  }
+
+  removeCertification(index: number) {
+    this.certifications.removeAt(index);
+  }
+
+  get references() {
+    return this.resumeForm.get('references') as FormArray;
+  }
+
+  addReferences() {
+    console.log('ref');
+    this.references.push(
+      this.fb.group({
+        name: ['', Validators.required],
+        contact: [''],
+      })
+    );
+  }
+
+  removeReferences(index: number) {
+    this.references.removeAt(index);
+  }
+
+  get skills() {
+    return this.resumeForm.get('skills') as FormArray;
+  }
+
+  addSkills() {
+    console.log('skill');
+    this.skills.push(
+      this.fb.group({
+        name: ['', Validators.required],
+        score: [''],
+      })
+    );
+  }
+
+  removeSkills(index: number) {
+    this.skills.removeAt(index);
+  }
 
   submitForm() {
     console.log('Form values:', this.resumeForm.value);
