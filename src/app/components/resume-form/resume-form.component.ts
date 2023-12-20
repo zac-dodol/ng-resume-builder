@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import { StepService } from 'src/app/service/step.service';
 
 @Component({
   selector: 'app-resume-form',
@@ -9,8 +10,14 @@ import { Router } from '@angular/router';
 })
 export class ResumeFormComponent implements OnInit {
   resumeForm!: FormGroup;
+  firstStepIndex = 0;
+  maxStepIndex = 5;
 
-  constructor(private fb: FormBuilder, private router: Router) {}
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    public stepService: StepService
+  ) {}
 
   ngOnInit() {
     this.initForm();
@@ -51,6 +58,18 @@ export class ResumeFormComponent implements OnInit {
 
   get skills() {
     return this.resumeForm.get('skills') as FormArray;
+  }
+
+  // Function to navigate to the next step
+  nextStep() {
+    const currentStep = this.stepService.getCurrentStep();
+    this.stepService.setCurrentStep(currentStep + 1);
+  }
+
+  // Function to navigate to the previous step
+  prevStep() {
+    const currentStep = this.stepService.getCurrentStep();
+    this.stepService.setCurrentStep(Math.max(0, currentStep - 1));
   }
 
   submitForm() {

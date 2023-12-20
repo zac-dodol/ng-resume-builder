@@ -1,18 +1,84 @@
 <form [formGroup]="resumeForm" (ngSubmit)="submitForm()">
-  <app-personal-info [personalInfoForm]="resumeForm"></app-personal-info>
+  <!-- Step 1: Personal Info -->
+  <div *ngIf="stepService.getCurrentStep() === 0">
+    <app-personal-info [personalInfoForm]="resumeForm"></app-personal-info>
+  </div>
 
-  <app-experience [experienceFormArray]="resumeForm"></app-experience>
+  <!-- Step 2: Experience -->
+  <div *ngIf="stepService.getCurrentStep() === 1">
+    <app-experience [experienceFormArray]="resumeForm"></app-experience>
+  </div>
 
-  <app-education [educationFormArray]="resumeForm"></app-education>
+  <!-- Step 3: Education -->
+  <div *ngIf="stepService.getCurrentStep() === 2">
+    <app-education [educationFormArray]="resumeForm"></app-education>
+  </div>
 
-  <app-certification [certificationFormArray]="resumeForm"></app-certification>
+  <!-- Step 4: Certification -->
+  <div *ngIf="stepService.getCurrentStep() === 3">
+    <app-certification
+      [certificationFormArray]="resumeForm"
+    ></app-certification>
+  </div>
 
-  <app-reference [referencesFormArray]="resumeForm"></app-reference>
+  <!-- Step 5: Reference -->
+  <div *ngIf="stepService.getCurrentStep() === 4">
+    <app-reference [referencesFormArray]="resumeForm"></app-reference>
+  </div>
 
-  <app-skill [skillFormArray]="resumeForm"></app-skill>
+  <!-- Step 6: Skill -->
+  <div *ngIf="stepService.getCurrentStep() === 5">
+    <app-skill [skillFormArray]="resumeForm"></app-skill>
+  </div>
 
-  <!-- submit button -->
-  <div class="row">
-    <button class="btn btn-primary my-3 ms-3" type="submit">Submit</button>
+  <!-- Navigation Buttons -->
+  <div class="row mt-3 d-flex">
+    <div
+      class="col"
+      [ngClass]="{
+        'd-none': stepService.getCurrentStep() == firstStepIndex
+      }"
+    >
+      <button
+        class="w-100 btn btn-secondary"
+        type="button"
+        *ngIf="stepService.getCurrentStep() != firstStepIndex"
+        (click)="prevStep()"
+      >
+        Previous
+      </button>
+    </div>
+
+    <div
+      class="col"
+      [ngClass]="{
+        'd-none': stepService.getCurrentStep() == maxStepIndex
+      }"
+    >
+      <button
+        class="w-100 btn btn-primary"
+        type="button"
+        (click)="nextStep()"
+        *ngIf="stepService.getCurrentStep() != maxStepIndex"
+      >
+        Next
+      </button>
+    </div>
+
+    <div
+      class="col"
+      [ngClass]="{
+        'd-block': stepService.getCurrentStep() == maxStepIndex,
+        'd-none': stepService.getCurrentStep() != maxStepIndex
+      }"
+    >
+      <button
+        class="w-100 btn btn-primary"
+        type="submit"
+        *ngIf="stepService.getCurrentStep() === maxStepIndex"
+      >
+        Submit
+      </button>
+    </div>
   </div>
 </form>
