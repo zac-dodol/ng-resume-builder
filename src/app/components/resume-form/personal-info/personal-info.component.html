@@ -1,0 +1,97 @@
+<!-- Personal Information -->
+<h2 class="my-3">Personal Information</h2>
+
+<div [formGroup]="personalInfoForm">
+  <!-- Add formGroup directive here -->
+  <div class="row mt-3">
+    <div class="col">
+      <label class="form-label" for="firstName">First Name:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="firstName"
+        name="firstName"
+        formControlName="firstName"
+        required
+      />
+    </div>
+
+    <div class="col">
+      <label class="form-label" for="lastName">Last Name:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="lastName"
+        name="lastName"
+        formControlName="lastName"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <label class="form-label" for="email">Email:</label>
+      <input
+        class="form-control"
+        type="email"
+        id="email"
+        name="email"
+        formControlName="email"
+        required
+      />
+    </div>
+
+    <div class="col">
+      <label class="form-label" for="phoneNumber">Phone Number:</label>
+      <input
+        class="form-control"
+        type="tel"
+        id="phoneNumber"
+        name="phoneNumber"
+        formControlName="phoneNumber"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <label class="form-label" for="address">Address:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="address"
+        name="address"
+        formControlName="address"
+        required
+      />
+    </div>
+  </div>
+
+  <div class="row mt-3">
+    <div class="col">
+      <label class="form-label" for="description">Description:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="description"
+        name="description"
+        formControlName="description"
+        required
+      />
+    </div>
+
+    <div class="col">
+      <label class="form-label" for="linkedin">Linkedin:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="linkedin"
+        name="linkedin"
+        formControlName="linkedin"
+        required
+      />
+    </div>
+  </div>
+</div>

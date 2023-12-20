@@ -1,0 +1,50 @@
+<!-- References -->
+<h2 class="my-3">References</h2>
+
+<div [formGroup]="referencesFormArray">
+  <div formArrayName="references">
+    <div
+      *ngFor="let reference of references.controls; let j = index"
+      [formGroupName]="j"
+    >
+      <h3>references {{ j + 1 }}</h3>
+
+      <div class="row mt-3">
+        <div class="col">
+          <label class="form-label" for="name">Name:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="name"
+            formControlName="name"
+            required
+          />
+        </div>
+
+        <div class="col">
+          <label class="form-label" for="contact">Contact:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="contact"
+            name="contact"
+            formControlName="contact"
+            required
+          />
+        </div>
+      </div>
+
+      <button
+        class="btn btn-danger mt-3 d-flex ms-auto"
+        type="button"
+        (click)="removeReferences(j)"
+      >
+        Remove references
+      </button>
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-secondary mt-3" type="button" (click)="addReferences()">
+  Add references
+</button>

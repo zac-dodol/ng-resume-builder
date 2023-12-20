@@ -1,0 +1,112 @@
+<!-- Education -->
+<h2 class="my-3">Education</h2>
+
+<div [formGroup]="educationFormArray">
+  <div formArrayName="educations">
+    <div
+      *ngFor="let education of educations.controls; let j = index"
+      [formGroupName]="j"
+    >
+      <h3>Education {{ j + 1 }}</h3>
+
+      <div class="row mt-3">
+        <div class="col">
+          <label class="form-label" for="degree">Degree:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="degree"
+            formControlName="degree"
+            required
+          />
+        </div>
+
+        <div class="col">
+          <label class="form-label" for="major">Major:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="major"
+            name="major"
+            formControlName="major"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col">
+          <label class="form-label" for="location">Location:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="location"
+            name="location"
+            formControlName="location"
+            required
+          />
+        </div>
+
+        <div class="col">
+          <label class="form-label" for="university">University:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="university"
+            name="university"
+            formControlName="university"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="row mt-3">
+        <div class="col">
+          <label class="form-label" for="startDate">startDate:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="startDate"
+            name="startDate"
+            formControlName="startDate"
+            required
+          />
+        </div>
+
+        <div class="col">
+          <label class="form-label" for="endDate">endDate:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="endDate"
+            name="endDate"
+            formControlName="endDate"
+            required
+          />
+        </div>
+      </div>
+
+      <label class="form-label mt-3" for="description">Description:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="description"
+        name="description"
+        formControlName="description"
+        required
+      />
+
+      <button
+        class="btn btn-danger mt-3 d-flex ms-auto"
+        type="button"
+        (click)="removeEducation(j)"
+      >
+        Remove Education
+      </button>
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-secondary mt-3" type="button" (click)="addEducation()">
+  Add Education
+</button>

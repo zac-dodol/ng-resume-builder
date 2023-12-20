@@ -1,0 +1,95 @@
+<!-- Experience -->
+<h2 class="my-3">Experiences</h2>
+
+<div [formGroup]="experienceFormArray">
+  <div formArrayName="experiences">
+    <div
+      *ngFor="let experience of experiences.controls; let i = index"
+      [formGroupName]="i"
+    >
+      <h3>Experience {{ i + 1 }}</h3>
+      <label class="form-label" for="title">Title:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="title"
+        formControlName="title"
+        required
+      />
+
+      <div class="row">
+        <div class="col">
+          <label class="form-label mt-3" for="company">Company:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="company"
+            name="company"
+            formControlName="company"
+            required
+          />
+        </div>
+
+        <div class="col">
+          <label class="form-label mt-3" for="location">Location:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="location"
+            name="location"
+            formControlName="location"
+            required
+          />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <label class="form-label mt-3" for="startDate">startDate:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="startDate"
+            name="startDate"
+            formControlName="startDate"
+            required
+          />
+        </div>
+
+        <div class="col">
+          <label class="form-label mt-3" for="endDate">endDate:</label>
+          <input
+            class="form-control"
+            type="text"
+            id="endDate"
+            name="endDate"
+            formControlName="endDate"
+            required
+          />
+        </div>
+      </div>
+
+      <label class="form-label mt-3" for="description">Description:</label>
+      <input
+        class="form-control"
+        type="text"
+        id="description"
+        name="description"
+        formControlName="description"
+        required
+      />
+
+      <button
+        class="btn btn-danger mt-3 d-flex ms-auto"
+        type="button"
+        (click)="removeExperience(i)"
+      >
+        Remove Experience
+      </button>
+    </div>
+  </div>
+</div>
+
+<button class="btn btn-secondary mt-3" type="button" (click)="addExperience()">
+  Add Experience
+</button>
