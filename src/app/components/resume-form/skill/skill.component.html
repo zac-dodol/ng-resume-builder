@@ -4,7 +4,7 @@
 <div [formGroup]="skillFormArray">
   <div formArrayName="skills">
     <div
-      *ngFor="let reference of skills.controls; let j = index"
+      *ngFor="let skill of skills.controls; let j = index"
       [formGroupName]="j"
     >
       <h3>skills {{ j + 1 }}</h3>

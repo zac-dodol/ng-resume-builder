@@ -21,4 +21,9 @@
   <div *ngIf="!resumeData">
     <p>No resume data available. Fill out the form to generate a preview.</p>
   </div>
+
+  <!-- Button or link to go back to the form -->
+  <button class="btn btn-secondary my-3 ms-3" (click)="goBackToForm()">
+    Edit Details
+  </button>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ResumeDataService } from 'src/app/service/resume-data.service';
 import { StepService } from 'src/app/service/step.service';
 
 @Component({
@@ -16,11 +17,19 @@ export class ResumeFormComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    public stepService: StepService
+    public stepService: StepService,
+    private resumeDataService: ResumeDataService
   ) {}
 
   ngOnInit() {
     this.initForm();
+
+    // Check if resume data is available and populate the form
+    const storedResumeData = this.resumeDataService.getResumeData();
+    console.log('storedData:', storedResumeData);
+    if (storedResumeData) {
+      this.resumeForm.patchValue(storedResumeData);
+    }
   }
 
   initForm() {
@@ -75,10 +84,13 @@ export class ResumeFormComponent implements OnInit {
   submitForm() {
     console.log('Form values:', this.resumeForm.value);
 
+    // Store the form data before navigating to the preview
+    this.resumeDataService.setResumeData(this.resumeForm.value);
+
     // Add any additional form submission logic here
     this.router.navigate(['/preview-resume'], {
       queryParams: {
-        data: JSON.stringify(this.resumeForm.value),
+        // data: JSON.stringify(this.resumeForm.value),
         template: 'template1', // Adjust the template value as needed
       },
     });
