@@ -9,18 +9,25 @@
     <!-- Add more options as needed -->
   </select>
 
-  <!-- Display selected template -->
-  <div *ngIf="selectedTemplate === 'template1'">
-    <app-template1 [resumeData]="resumeData"></app-template1>
+  <div #resumeContent>
+    <!-- Display selected template -->
+    <div *ngIf="selectedTemplate === 'template1'">
+      <app-template1 [resumeData]="resumeData"></app-template1>
+    </div>
+
+    <div *ngIf="selectedTemplate === 'template2'">
+      <app-template2 [resumeData]="resumeData"></app-template2>
+    </div>
+
+    <div *ngIf="!resumeData">
+      <p>No resume data available. Fill out the form to generate a preview.</p>
+    </div>
   </div>
 
-  <div *ngIf="selectedTemplate === 'template2'">
-    <app-template2 [resumeData]="resumeData"></app-template2>
-  </div>
-
-  <div *ngIf="!resumeData">
-    <p>No resume data available. Fill out the form to generate a preview.</p>
-  </div>
+  <!-- Button to download PDF -->
+  <button class="btn btn-warning my-3 ms-3" (click)="printResume()">
+    Print Template
+  </button>
 
   <!-- Button or link to go back to the form -->
   <button class="btn btn-secondary my-3 ms-3" (click)="goBackToForm()">

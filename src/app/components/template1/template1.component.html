@@ -1,73 +1,113 @@
 <h2>Template 1</h2>
 
-<div class="template1 d-flex flex-wrap gap-3">
-  <div class="my-1 p-1 border">
-    <div class="">First Name: {{ resumeData.firstName }}</div>
+<div class="container mt-3 border template1">
+  <div class="row">
+    <div class="">
+      <h1>{{ resumeData.firstName }} {{ resumeData.lastName }}</h1>
+      <div>{{ resumeData.experiences[0].title }}</div>
+      <div class="info-item row m-auto text-center">
+        <div class="col">
+          {{ resumeData.email }}
+        </div>
 
-    <div class="">Last Name: {{ resumeData.lastName }}</div>
+        <div class="col">
+          {{ resumeData.phoneNumber }}
+        </div>
 
-    <div class="">email: {{ resumeData.email }}</div>
+        <div class="col">
+          {{ resumeData.address }}
+        </div>
+      </div>
 
-    <div class="">phone no: {{ resumeData.phoneNumber }}</div>
+      <div class="info-item row m-auto text-center">
+        <div class="col">
+          {{ resumeData.description }}
+        </div>
 
-    <div class="">address: {{ resumeData.address }}</div>
-
-    <div class="">description: {{ resumeData.description }}</div>
-
-    <div class="">linkedin: {{ resumeData.linkedin }}</div>
+        <div class="col">
+          {{ resumeData.linkedin }}
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div
-    class="my-1 p-1 border"
-    *ngFor="let experience of resumeData.experiences; let i = index"
-  >
-    Experience {{ i + 1 }}
-    <div class="">title:{{ experience.title }}</div>
-    <div class="">company:{{ experience.company }}</div>
-    <div class="">location:{{ experience.location }}</div>
-    <div class="">startDate:{{ experience.startDate }}</div>
-    <div class="">endDate:{{ experience.endDate }}</div>
-    <div class="">description:{{ experience.description }}</div>
+  <div class="row mt-3">
+    <h2>Experience</h2>
+
+    <div
+      class=""
+      *ngFor="let experience of resumeData.experiences; let i = index"
+    >
+      <div class="d-flex justify-content-between">
+        <div>
+          <strong> {{ experience.company }} </strong> - {{ experience.title }}
+        </div>
+
+        <div>{{ experience.startDate }} - {{ experience.endDate }}</div>
+      </div>
+
+      <div>{{ experience.location }}</div>
+
+      <ul>
+        <li>{{ experience.description }}</li>
+      </ul>
+    </div>
   </div>
 
-  <div
-    class="my-1 p-1 border"
-    *ngFor="let education of resumeData.educations; let i = index"
-  >
-    education {{ i + 1 }}
-    <div class="">degree:{{ education.degree }}</div>
-    <div class="">major:{{ education.major }}</div>
-    <div class="">university:{{ education.university }}</div>
-    <div class="">location:{{ education.location }}</div>
-    <div class="">startDate:{{ education.startDate }}</div>
-    <div class="">endDate:{{ education.endDate }}</div>
-    <div class="">description:{{ education.description }}</div>
+  <div class="row mt-3">
+    <h2>Education</h2>
+
+    <div
+      class="my-2"
+      *ngFor="let education of resumeData.educations; let i = index"
+    >
+      <div class="d-flex justify-content-between">
+        <strong>{{ education.university }}</strong> {{ education.startDate }} -
+        {{ education.endDate }}
+      </div>
+
+      <div>{{ education.degree }} {{ education.major }}</div>
+
+      <div>{{ education.description }} in {{ education.location }}</div>
+    </div>
   </div>
 
-  <div
-    class="my-1 p-1 border"
-    *ngFor="let certification of resumeData.certifications; let i = index"
-  >
-    certification {{ i + 1 }}
-    <div class="">name:{{ certification.name }}</div>
-    <div class="">date:{{ certification.date }}</div>
+  <div class="row mt-3">
+    <h2>Certification</h2>
+
+    <div
+      class="my-2"
+      *ngFor="let certification of resumeData.certifications; let i = index"
+    >
+      <div class="d-flex justify-content-between">
+        <strong>{{ certification.name }}</strong>
+        {{ certification.date }}
+      </div>
+    </div>
   </div>
 
-  <div
-    class="my-1 p-1 border"
-    *ngFor="let reference of resumeData.references; let i = index"
-  >
-    reference {{ i + 1 }}
-    <div class="">name:{{ reference.name }}</div>
-    <div class="">contact:{{ reference.contact }}</div>
+  <div class="row mt-3">
+    <h2>References</h2>
+
+    <div
+      class="my-2"
+      *ngFor="let reference of resumeData.references; let i = index"
+    >
+      <div class="d-flex justify-content-between">
+        <strong>{{ reference.name }}</strong>
+        {{ reference.contact }}
+      </div>
+    </div>
   </div>
 
-  <div
-    class="my-1 p-1 border"
-    *ngFor="let skill of resumeData.skills; let i = index"
-  >
-    skill {{ i + 1 }}: {{ skill.name }}
-    <div class="">name:{{ skill.name }}</div>
-    <div class="">score:{{ skill.score }}</div>
+  <div class="row mt-3">
+    <h2>Skills</h2>
+
+    <div class="my-2" *ngFor="let skill of resumeData.skills; let i = index">
+      <div class="d-flex justify-content-between">
+        <strong>{{ skill.name }}</strong>
+        {{ skill.score }}
+      </div>
+    </div>
   </div>
 </div>

@@ -85,12 +85,13 @@ export class ResumeFormComponent implements OnInit {
     console.log('Form values:', this.resumeForm.value);
 
     // Store the form data before navigating to the preview
-    this.resumeDataService.setResumeData(this.resumeForm.value);
+    // this.resumeDataService.setResumeData(this.resumeForm.value);
 
     // Add any additional form submission logic here
     this.router.navigate(['/preview-resume'], {
       queryParams: {
-        // data: JSON.stringify(this.resumeForm.value),
+        // data will be in url and refresh wont lose it
+        data: JSON.stringify(this.resumeForm.value),
         template: 'template1', // Adjust the template value as needed
       },
     });
